@@ -16,3 +16,6 @@ const drinkSchema = mongoose.Schema({
     default: new Date(),
   },
 });
+
+const DrinkModel = mongoose.model("DrinkModel", drinkSchema);
+export default DrinkModel;
