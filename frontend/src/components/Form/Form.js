@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/posts";
+
+import { useSelector } from "react-redux";
 import useStyles from "./styles";
 
 const Form = ({ currentId, setCurrentId }) => {
+  const updatedPost = useSelector((state) =>
+    currentId ? state.posts.find((post) => post._id === currentId) : null
+  );
   const dispatch = useDispatch();
 
   const [drinkData, setDrinkData] = useState({
@@ -18,6 +23,14 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const classes = useStyles();
+
+  useEffect =
+    (() => {
+      if (post) {
+        setDrinkData(post);
+      }
+    },
+    [post]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
