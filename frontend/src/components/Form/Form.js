@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
+import { createPost } from "../../actions/posts";
 import useStyles from "./styles";
 
 const Form = () => {
+  const dispatch = useDispatch();
+
   const [drinkData, setDrinkData] = useState({
     name: "",
     type: "",
@@ -12,9 +16,13 @@ const Form = () => {
     comments: "",
     username: "",
   });
+
   const classes = useStyles();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createPost(drinkData));
+  };
 
   const clear = () => {};
 
