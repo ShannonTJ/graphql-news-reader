@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 import useStyles from "./styles";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
 
   const [drinkData, setDrinkData] = useState({
@@ -21,7 +21,13 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createPost(drinkData));
+
+    //update the post if it already exists
+    if (currentId) {
+      dispatch(updatePost(currentId, drinkData));
+    } else {
+      dispatch(createPost(drinkData));
+    }
   };
 
   const clear = () => {};
