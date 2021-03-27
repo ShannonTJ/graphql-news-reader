@@ -6,6 +6,7 @@ import {
   CardMedia,
   Button,
   Typography,
+  CircularProgress,
 } from "@material-ui/core";
 import { FaStar } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
@@ -18,11 +19,15 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={post.selectedFile}
-        title={post.name}
-      />
+      {post.selectedFile ? (
+        <CardMedia
+          className={classes.media}
+          image={post.selectedFile}
+          title={post.name}
+        />
+      ) : (
+        <CircularProgress />
+      )}
       <div className={classes.overlay}>
         <Typography variant="h6">{post.username}</Typography>
         <Typography variant="body2">

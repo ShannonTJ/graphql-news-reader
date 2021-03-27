@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import DrinkModel from "../models/drinkModel.js";
 
 export const getPosts = async (req, res) => {
@@ -30,9 +31,13 @@ export const updatePost = async (req, res) => {
     return res.status(404).send("No post with that id");
   }
 
-  const updatedDrink = await DrinkModel.findByIdAndUpdate(_id, drink, {
-    new: true,
-  });
+  const updatedDrink = await DrinkModel.findByIdAndUpdate(
+    _id,
+    { ...drink, _id },
+    {
+      new: true,
+    }
+  );
 
   res.json(updatedDrink);
 };

@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
 
   return (
     <Container maxWidth="lg">
@@ -30,7 +30,7 @@ const App = () => {
           <Grid
             container
             justify="space-between"
-            alignItems="stretcg"
+            alignItems="stretch"
             spacing={3}
           >
             <Grid item xs={12} sm={7}>

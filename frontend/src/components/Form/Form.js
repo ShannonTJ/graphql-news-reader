@@ -8,10 +8,11 @@ import { useSelector } from "react-redux";
 import useStyles from "./styles";
 
 const Form = ({ currentId, setCurrentId }) => {
-  const updatedPost = useSelector((state) =>
+  const updatedDrink = useSelector((state) =>
     currentId ? state.posts.find((post) => post._id === currentId) : null
   );
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [drinkData, setDrinkData] = useState({
     name: "",
@@ -22,15 +23,11 @@ const Form = ({ currentId, setCurrentId }) => {
     username: "",
   });
 
-  const classes = useStyles();
-
-  useEffect =
-    (() => {
-      if (post) {
-        setDrinkData(post);
-      }
-    },
-    [post]);
+  useEffect(() => {
+    if (updatedDrink) {
+      setDrinkData(updatedDrink);
+    }
+  }, [updatedDrink]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,9 +38,21 @@ const Form = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createPost(drinkData));
     }
+    //clear data from form
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setDrinkData({
+      name: "",
+      type: "",
+      brewery: "",
+      selectedFile: "",
+      comments: "",
+      username: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -53,7 +62,9 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Drink</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Creating"} a Drink
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
