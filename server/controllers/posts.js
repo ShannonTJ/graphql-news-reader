@@ -28,7 +28,7 @@ export const updatePost = async (req, res) => {
   const drink = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).send("No post with that id");
+    return res.status(404).send("No drink with that id");
   }
 
   const updatedDrink = await DrinkModel.findByIdAndUpdate(
@@ -40,4 +40,15 @@ export const updatePost = async (req, res) => {
   );
 
   res.json(updatedDrink);
+};
+
+export const deletePost = async (req, res) => {
+  const { id: _id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("No drink with that id");
+  }
+
+  await DrinkModel.findByIdAndRemove(_id);
+  res.json({ message: "Drink deleted successfully" });
 };
