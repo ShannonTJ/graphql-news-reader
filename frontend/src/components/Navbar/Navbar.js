@@ -47,7 +47,7 @@ const Navbar = () => {
         ) : (
           <Button
             component={Link}
-            to="/auth"
+            to="/login"
             variant="contained"
             color="primary"
           >

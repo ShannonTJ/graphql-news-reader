@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Input from "./Input";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { FaLock } from "react-icons/fa";
 import {
   Avatar,
   Button,
@@ -14,23 +14,28 @@ import {
 import useStyles from "./styles";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
 
-  const isSignup = false;
+  const isSignup = true;
   const handleSubmit = () => {};
   const handleChange = () => {};
+
+  const handleShowPassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <FaLock />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign up" : "Sign in"}</Typography>
         <form
           className={classes.form}
           onSubmit={() => {
-            handleSubmit;
+            handleSubmit();
           }}
         >
           <Grid container spacing={2}>
@@ -61,9 +66,27 @@ const Login = () => {
               name="password"
               label="Password"
               handleChange={handleChange}
-              type="password"
+              type={showPassword ? "text" : "password"}
+              handleShowPassword={handleShowPassword}
             />
+            {isSignup && (
+              <Input
+                name="confirmPassword"
+                label="Confirm Password"
+                handleChange={handleChange}
+                type="password"
+              />
+            )}
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignup ? "Sign up" : "Sign in"}
+          </Button>
         </form>
       </Paper>
     </Container>
