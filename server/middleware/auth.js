@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
 
     if (token && isCustomAuth) {
       //give us user data (username, id, etc) from each token
-      decodedData = jwt.verify(token, JWT_SECRET);
+      decodedData = jwt.verify(token, process.env.JWT_SECRET);
       req.userId = decodedData?.id;
     } else {
       //Google Auth
