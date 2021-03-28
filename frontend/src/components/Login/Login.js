@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { signin, signup } from "../../actions/auth";
 
 import Icon from "./Icon";
 import Input from "./Input";
@@ -18,16 +19,36 @@ import {
 
 import useStyles from "./styles";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   const classes = useStyles();
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -63,12 +84,7 @@ const Login = () => {
           <FaLock />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign up" : "Sign in"}</Typography>
-        <form
-          className={classes.form}
-          onSubmit={() => {
-            handleSubmit();
-          }}
-        >
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignup && (
               <>
