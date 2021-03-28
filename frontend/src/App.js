@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./actions/posts";
 
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import { FaBeer } from "react-icons/fa";
+import { Container, Grow, Grid } from "@material-ui/core";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 import useStyles from "./styles";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   const [currentId, setCurrentId] = useState(null);
@@ -19,12 +19,7 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <FaBeer className={classes.image} height="60" />
-        <Typography className={classes.heading} variant="h2" align="center">
-          DrinksApp
-        </Typography>
-      </AppBar>
+      <Navbar />
       <Grow in>
         <Container>
           <Grid
