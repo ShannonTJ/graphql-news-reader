@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoogleLogin } from "react-google-login";
 
 import Input from "./Input";
 import { FaLock } from "react-icons/fa";
@@ -83,6 +84,22 @@ const Login = () => {
               />
             )}
           </Grid>
+          <GoogleLogin
+            clientId="GOOGLE ID"
+            render={(renderProps) => (
+              <Button
+                className={classes.googleButton}
+                color="primary"
+                fullWidth
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                startIcon={<Icon />}
+                variant="contained"
+              >
+                Google Sign In
+              </Button>
+            )}
+          />
           <Button
             type="submit"
             fullWidth
