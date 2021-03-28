@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Typography, Toolbar, Button, Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { FaBeer } from "react-icons/fa";
 
