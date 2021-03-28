@@ -2,16 +2,15 @@ import React from "react";
 import { TextField, Grid, InputAdornment, IconButton } from "@material-ui/core";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const Input = (props) => {
-  const {
-    half,
-    name,
-    label,
-    handleChange,
-    autoFocus,
-    type,
-    handleShowPassword,
-  } = { props };
+const Input = ({
+  half,
+  name,
+  label,
+  handleChange,
+  autoFocus,
+  type,
+  handleShowPassword,
+}) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
       <TextField
