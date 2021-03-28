@@ -20,15 +20,17 @@ const Input = ({
         autoFocus={autoFocus}
         type={type}
         InputProps={
-          name === "password" && {
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={handleShowPassword}>
-                  {type === "password" ? <FaRegEye /> : <FaRegEyeSlash />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }
+          name === "password"
+            ? {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleShowPassword}>
+                      {type === "password" ? <FaRegEye /> : <FaRegEyeSlash />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }
+            : null
         }
         xs={6}
         variant="outlined"

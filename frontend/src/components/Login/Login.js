@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
+import { useDispatch } from "react-redux";
 
+import Icon from "./Icon";
 import Input from "./Input";
 import { FaLock } from "react-icons/fa";
+
 import {
   Avatar,
   Button,
@@ -19,6 +22,8 @@ const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
   const handleSubmit = () => {};
   const handleChange = () => {};
 
@@ -29,6 +34,22 @@ const Login = () => {
 
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: "AUTH", data: { result, token } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const googleFailure = (error) => {
+    console.log(error);
+    console.log("Google sign in was unsuccessful. Try again later.");
   };
 
   return (
@@ -84,8 +105,17 @@ const Login = () => {
               />
             )}
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignup ? "Sign up" : "Sign in"}
+          </Button>
           <GoogleLogin
-            clientId="GOOGLE ID"
+            clientId=""
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -99,16 +129,10 @@ const Login = () => {
                 Google Sign In
               </Button>
             )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            {isSignup ? "Sign up" : "Sign in"}
-          </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
