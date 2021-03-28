@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Icon from "./Icon";
 import Input from "./Input";
@@ -22,6 +23,7 @@ const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
   const classes = useStyles();
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = () => {};
@@ -42,6 +44,8 @@ const Login = () => {
 
     try {
       dispatch({ type: "AUTH", data: { result, token } });
+      //redirect to home page
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +119,7 @@ const Login = () => {
             {isSignup ? "Sign up" : "Sign in"}
           </Button>
           <GoogleLogin
-            clientId=""
+            clientId={process.env.REACT_APP_GOOGLE_ID}
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
