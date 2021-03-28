@@ -89,16 +89,10 @@ const Login = () => {
             {isSignup && (
               <>
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name="username"
+                  label="Username"
                   handleChange={handleChange}
                   autoFocus
-                  half
-                />
-                <Input
-                  name="lastName"
-                  label="Last Name"
-                  handleChange={handleChange}
                   half
                 />
               </>
