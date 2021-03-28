@@ -20,8 +20,7 @@ import {
 import useStyles from "./styles";
 
 const initialState = {
-  firstName: "",
-  lastName: "",
+  username: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -93,7 +92,6 @@ const Login = () => {
                   label="Username"
                   handleChange={handleChange}
                   autoFocus
-                  half
                 />
               </>
             )}
