@@ -64,7 +64,7 @@ export const likePost = async (req, res) => {
   const updatedPost = await DrinkModel.findByIdAndUpdate(
     _id,
     {
-      likeCount: post.likeCount + 1,
+      score: post.score + 1,
     },
     { new: true }
   );

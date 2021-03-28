@@ -12,7 +12,7 @@ import { FaStar } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { FaEllipsisH } from "react-icons/fa";
 
-import { deletePost } from "../../actions/posts";
+import { deletePost, likePost } from "../../actions/posts";
 import { useDispatch } from "react-redux";
 
 import moment from "moment";
@@ -55,7 +55,13 @@ const Post = ({ post, setCurrentId }) => {
         </div>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            dispatch(likePost(post._id));
+          }}
+        >
           <FaStar fontSize="small" /> Like {post.score}
         </Button>
         <Button
