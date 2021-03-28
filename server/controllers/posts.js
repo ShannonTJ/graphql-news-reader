@@ -56,18 +56,27 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
   const { id: _id } = req.params;
 
+  //check auth middleware
+  if (!req.userId) return res.json({ message: "User not logged in." });
+
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("No drink with that id");
   }
 
   const post = await DrinkModel.findById(_id);
-  const updatedPost = await DrinkModel.findByIdAndUpdate(
-    _id,
-    {
-      score: post.score + 1,
-    },
-    { new: true }
-  );
+
+  const index = post.likes.findIndex((id) => id === String(req.userId));
+  if (index === -1) {
+    //like a post
+    post.likes.push(req.userId);
+  } else {
+    //unlike a post
+    post.likes = post.likes.filter((id) => id !== String(req.userId));
+  }
+
+  const updatedPost = await DrinkModel.findByIdAndUpdate(_id, post, {
+    new: true,
+  });
 
   res.json(updatedPost);
 };

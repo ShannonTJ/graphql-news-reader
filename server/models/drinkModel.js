@@ -6,8 +6,8 @@ const drinkSchema = mongoose.Schema({
   type: String,
   brewery: String,
   score: {
-    type: Number,
-    default: 0,
+    type: [String],
+    default: [],
   },
   comments: String,
   username: String,
