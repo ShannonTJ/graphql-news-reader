@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-import { NavText, NavContainer, NavFill } from "./NavbarStyle";
+import {
+  NavBrand,
+  NavContainer,
+  NavFill,
+  NavTextContainer,
+  StyledLink,
+} from "./NavbarStyle";
 import { AppBar, Typography, Toolbar, Button, Avatar } from "@material-ui/core";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { FaBeer } from "react-icons/fa";
 import decode from "jwt-decode";
+
+import Login from "../Login/Login";
 
 import { useDispatch } from "react-redux";
 
@@ -43,7 +51,14 @@ const Navbar = () => {
   return (
     <NavContainer>
       <NavFill>
-        <NavText>kanpai</NavText>
+        <NavTextContainer>
+          <StyledLink to="/">kanpai</StyledLink>
+          {user ? null : (
+            <StyledLink to="/login" size="1.2">
+              log in
+            </StyledLink>
+          )}
+        </NavTextContainer>
       </NavFill>
     </NavContainer>
   );
