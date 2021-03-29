@@ -11,6 +11,7 @@ const drinkSchema = mongoose.Schema({
   },
   comments: String,
   username: String,
+  creator: String,
   createdAt: {
     type: Date,
     default: new Date(),

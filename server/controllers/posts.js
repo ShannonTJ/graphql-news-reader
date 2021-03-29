@@ -13,7 +13,11 @@ export const getPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const drink = req.body;
-  const newDrink = new DrinkModel(drink);
+  const newDrink = new DrinkModel({
+    ...drink,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
 
   try {
     await newDrink.save();

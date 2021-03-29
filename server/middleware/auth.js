@@ -4,7 +4,7 @@ const auth = async (req, res, next) => {
   try {
     //check if user's token is valid
     //if length < 500 then the token is our own, not GoogleAuth's token
-    const token = req.headers.authorization.split("")[1];
+    const token = req.headers.authorization.split(" ")[1];
     const isCustomAuth = token.length < 500;
 
     let decodedData;

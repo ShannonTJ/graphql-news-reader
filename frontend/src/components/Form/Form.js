@@ -14,13 +14,14 @@ const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   const [drinkData, setDrinkData] = useState({
     name: "",
     type: "",
     brewery: "",
     selectedFile: "",
     comments: "",
-    username: "",
   });
 
   useEffect(() => {
@@ -34,9 +35,19 @@ const Form = ({ currentId, setCurrentId }) => {
 
     //update the post if it already exists
     if (currentId) {
-      dispatch(updatePost(currentId, drinkData));
+      dispatch(
+        updatePost(currentId, {
+          ...drinkData,
+          username: user?.result?.username,
+        })
+      );
     } else {
-      dispatch(createPost(drinkData));
+      dispatch(
+        createPost({
+          ...drinkData,
+          username: user?.result?.username,
+        })
+      );
     }
     //clear data from form
     clear();
@@ -50,9 +61,18 @@ const Form = ({ currentId, setCurrentId }) => {
       brewery: "",
       selectedFile: "",
       comments: "",
-      username: "",
     });
   };
+
+  if (!user?.result?.username) {
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please sign in to create and like posts.
+        </Typography>
+      </Paper>
+    );
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -65,16 +85,6 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? "Editing" : "Creating"} a Drink
         </Typography>
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={drinkData.username}
-          onChange={(e) =>
-            setDrinkData({ ...drinkData, username: e.target.value })
-          }
-        />
         <TextField
           name="name"
           variant="outlined"
