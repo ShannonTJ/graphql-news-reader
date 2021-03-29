@@ -1,36 +1,42 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
-export const NavContainer = styled.div`
+export const NavContainer = styled.ul`
   width: 100%;
-  height: 80px;
-`;
-
-export const NavFill = styled.nav`
   z-index: 1;
-  width: 100%;
   height: 80px;
-  background: #241d0f;
+
+  margin: 0;
+  padding: 0;
   position: fixed;
   top: 0;
   left: 0;
+
+  overflow: hidden;
+
+  list-style-type: none;
+  background: #241d0f;
+
   border-bottom: 4px solid #5c5646;
 `;
 
-export const NavTextContainer = styled.div`
-  width: 100%;
-  height: 80px;
+export const NavItem = styled.li`
+  padding: 1rem 2.5rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  float: right;
+
+  &:first-child {
+    float: left;
+  }
 `;
 
 export const StyledLink = styled(Link)`
+  height: 3rem;
+  display: flex;
+  align-items: center;
   color: #b5ad98;
   font-family: Arial;
-  font-size: ${({ size }) => size || "2"}rem;
-  padding: 0 3rem;
+  font-size: ${({ size }) => (size === "small" ? "1.2" : "2")}rem;
 
   text-decoration: none;
 

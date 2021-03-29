@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import {
-  NavBrand,
-  NavContainer,
-  NavFill,
-  NavTextContainer,
-  StyledLink,
-} from "./NavbarStyle";
-import { AppBar, Typography, Toolbar, Button, Avatar } from "@material-ui/core";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { FaBeer } from "react-icons/fa";
+import { NavContainer, NavItem, StyledLink } from "./NavbarStyle";
+import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 
-import Login from "../Login/Login";
-
-import { useDispatch } from "react-redux";
-
-import useStyles from "./styles";
-
 const Navbar = () => {
-  const classes = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   const history = useHistory();
@@ -50,67 +35,37 @@ const Navbar = () => {
 
   return (
     <NavContainer>
-      <NavFill>
-        <NavTextContainer>
-          <StyledLink to="/">kanpai</StyledLink>
-          {user ? null : (
-            <StyledLink to="/login" size="1.2">
+      <NavItem>
+        <StyledLink to="/">kanpai</StyledLink>
+      </NavItem>
+      {user ? (
+        <>
+          <NavItem>
+            <StyledLink to="/" onClick={logout} size="small">
+              log out
+            </StyledLink>
+          </NavItem>
+          <NavItem>
+            <StyledLink to="/" size="small">
+              profile
+            </StyledLink>
+          </NavItem>
+        </>
+      ) : (
+        <>
+          <NavItem>
+            <StyledLink to="/login" size="small">
               log in
             </StyledLink>
-          )}
-        </NavTextContainer>
-      </NavFill>
+          </NavItem>
+          <NavItem>
+            <StyledLink to="/about" size="small">
+              about
+            </StyledLink>
+          </NavItem>
+        </>
+      )}
     </NavContainer>
-  );
-
-  return (
-    <AppBar className={classes.appBar} position="static" color="inherit">
-      <div className={classes.brandContainer}>
-        <FaBeer className={classes.image} height="60" />
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-          align="center"
-        >
-          kanpai
-        </Typography>
-      </div>
-      <Toolbar className={classes.toolbar}>
-        {user ? (
-          <div className={classes.profile}>
-            <Avatar
-              className={classes.purple}
-              alt={user.result.username}
-              src={user.result.imageUrl}
-            >
-              {user.result.username.charAt(0)}
-            </Avatar>
-            <Typography className={classes.userName} variant="h6">
-              {user.result.username}
-            </Typography>
-            <Button
-              variant="contained"
-              className={classes.logout}
-              color="secondary"
-              onClick={logout}
-            >
-              Log out
-            </Button>
-          </div>
-        ) : (
-          <Button
-            component={Link}
-            to="/login"
-            variant="contained"
-            color="primary"
-          >
-            Log in
-          </Button>
-        )}
-      </Toolbar>
-    </AppBar>
   );
 };
 
