@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import { NavText, NavContainer, NavFill } from "./NavbarStyle";
 import { AppBar, Typography, Toolbar, Button, Avatar } from "@material-ui/core";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { FaBeer } from "react-icons/fa";
@@ -37,6 +39,14 @@ const Navbar = () => {
 
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
+
+  return (
+    <NavContainer>
+      <NavFill>
+        <NavText>kanpai</NavText>
+      </NavFill>
+    </NavContainer>
+  );
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
