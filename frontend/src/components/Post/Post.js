@@ -41,13 +41,16 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button
-          style={{ color: "white" }}
-          size="small"
-          onClick={() => setCurrentId(post._id)}
-        >
-          <FaEllipsisH fontSize="default" />
-        </Button>
+        {(user?.result?.googleId === post?.creator ||
+          user?.result._id === post?.creator) && (
+          <Button
+            style={{ color: "white" }}
+            size="small"
+            onClick={() => setCurrentId(post._id)}
+          >
+            <FaEllipsisH fontSize="default" />
+          </Button>
+        )}
       </div>
       <CardContent>
         <div className={classes.title}>
@@ -67,16 +70,19 @@ const Post = ({ post, setCurrentId }) => {
         >
           <FaStar fontSize="small" /> Like {post.score.length}
         </Button>
-        <Button
-          disabled={!user?.result}
-          size="small"
-          color="primary"
-          onClick={() => {
-            dispatch(deletePost(post._id));
-          }}
-        >
-          <FaTrash fontSize="small" /> Delete
-        </Button>
+        {(user?.result?.googleId === post?.creator ||
+          user?.result._id === post?.creator) && (
+          <Button
+            disabled={!user?.result}
+            size="small"
+            color="primary"
+            onClick={() => {
+              dispatch(deletePost(post._id));
+            }}
+          >
+            <FaTrash fontSize="small" /> Delete
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
