@@ -6,11 +6,11 @@ import {
   CardMedia,
   Button,
   Typography,
-  CircularProgress,
 } from "@material-ui/core";
 import { FaStar } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { FaEllipsisH } from "react-icons/fa";
+import defaultPic from "../../images/bg2.jpg";
 
 import { deletePost, likePost } from "../../actions/posts";
 import { useDispatch } from "react-redux";
@@ -32,7 +32,11 @@ const Post = ({ post, setCurrentId }) => {
           title={post.name}
         />
       ) : (
-        <CircularProgress />
+        <CardMedia
+          className={classes.media}
+          image={defaultPic}
+          title={post.name}
+        />
       )}
       <div className={classes.overlay}>
         <Typography variant="h6">{post.username}</Typography>

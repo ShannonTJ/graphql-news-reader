@@ -121,12 +121,12 @@ const Form = ({ currentId, setCurrentId }) => {
             setDrinkData({ ...drinkData, comments: e.target.value })
           }
         />
-        <div className={classes.fileInput}>
+        <div>
           <FileBase
             type="file"
             multiple={false}
-            onDone={({ base64 }) =>
-              setDrinkData({ ...drinkData, selectedFile: base64 })
+            onDone={({ defaultPic }) =>
+              setDrinkData({ ...drinkData, selectedFile: defaultPic })
             }
           />
         </div>
