@@ -21,6 +21,8 @@ import useStyles from "./styles";
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   return (
     <Card className={classes.card}>
       {post.selectedFile ? (
@@ -56,15 +58,17 @@ const Post = ({ post, setCurrentId }) => {
       </CardContent>
       <CardActions>
         <Button
+          disabled={!user?.result}
           size="small"
           color="primary"
           onClick={() => {
             dispatch(likePost(post._id));
           }}
         >
-          <FaStar fontSize="small" /> Like {post.score}
+          <FaStar fontSize="small" /> Like {post.score.length}
         </Button>
         <Button
+          disabled={!user?.result}
           size="small"
           color="primary"
           onClick={() => {

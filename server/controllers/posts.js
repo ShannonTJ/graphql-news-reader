@@ -69,13 +69,13 @@ export const likePost = async (req, res) => {
 
   const post = await DrinkModel.findById(_id);
 
-  const index = post.likes.findIndex((id) => id === String(req.userId));
+  const index = post.score.findIndex((id) => id === String(req.userId));
   if (index === -1) {
     //like a post
-    post.likes.push(req.userId);
+    post.score.push(req.userId);
   } else {
     //unlike a post
-    post.likes = post.likes.filter((id) => id !== String(req.userId));
+    post.score = post.score.filter((id) => id !== String(req.userId));
   }
 
   const updatedPost = await DrinkModel.findByIdAndUpdate(_id, post, {
