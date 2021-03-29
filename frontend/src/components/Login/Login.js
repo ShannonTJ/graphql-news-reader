@@ -58,8 +58,18 @@ const Login = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+  function renameProperty(obj, fromKey, toKey) {
+    obj[toKey] = obj[fromKey];
+    delete obj[fromKey];
+  }
+
   const googleSuccess = async (res) => {
+    //add a username field to google auth object
+    renameProperty(res?.profileObj, "name", "username");
     const result = res?.profileObj;
+
+    //const result = { ...res?.profileObj, ["username"]: res?.profileObj.name };
+    console.log(result);
     const token = res?.tokenId;
 
     try {

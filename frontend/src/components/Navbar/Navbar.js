@@ -40,7 +40,7 @@ const Navbar = () => {
           variant="h2"
           align="center"
         >
-          DrinksApp
+          kanpai
         </Typography>
       </div>
       <Toolbar className={classes.toolbar}>
