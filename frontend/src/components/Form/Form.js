@@ -64,6 +64,8 @@ const Form = ({ currentId, setCurrentId }) => {
     });
   };
 
+  return null;
+
   if (!user?.result?.username) {
     return (
       <Paper className={classes.paper}>

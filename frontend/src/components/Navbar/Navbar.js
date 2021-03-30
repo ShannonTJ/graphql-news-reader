@@ -31,7 +31,7 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, [location, user?.token]);
 
   return (
     <NavContainer>
@@ -56,11 +56,6 @@ const Navbar = () => {
           <NavItem>
             <StyledLink to="/login" size="small">
               log in
-            </StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink to="/about" size="small">
-              about
             </StyledLink>
           </NavItem>
         </>

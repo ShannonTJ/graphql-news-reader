@@ -86,6 +86,8 @@ const Login = () => {
     console.log("Google sign in was unsuccessful. Try again later.");
   };
 
+  return null;
+
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
