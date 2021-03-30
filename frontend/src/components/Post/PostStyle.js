@@ -10,24 +10,87 @@ export const PostContainer = styled.div`
 
   background: #241d0f;
   border-radius: 1rem;
-  border: 4px solid #5c5646;
+
+  position: relative;
+
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+`;
+
+export const ImageContainer = styled.div`
+  width: 35rem;
+  height: 11rem;
+  border-bottom: 4px solid #5c5646;
 
   img {
     border-radius: 0.8rem 0.8rem 0 0;
-    border-bottom: 4px solid #5c5646;
     width: 35rem;
-    height: 13rem;
+    height: 11rem;
     object-fit: cover;
+    filter: brightness(40%);
   }
 `;
 
-export const TextContainer = styled.div`
+export const Overlay = styled.div`
+  position: absolute;
+  top: 7rem;
   width: 30rem;
-  height: 20rem;
+
+  font-weight: 400;
+  font-size: 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-family: Arial;
+  color: #b5ad98;
+`;
+
+export const TitleContainer = styled.div`
+  width: 30rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: Arial;
+  color: #b5ad98;
+
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export const InfoContainer = styled.div`
+  width: 30rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: Arial;
+  color: #b5ad98;
+  font-size: 1rem;
+
+  p {
+    padding: 0;
+    margin: 0;
+    width: 13rem;
+    font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
+export const CommentsContainer = styled.div`
+  width: 30rem;
+  height: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
   font-family: Arial;
   color: #b5ad98;
+  font-size: 1rem;
 `;

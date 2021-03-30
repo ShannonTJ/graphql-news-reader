@@ -18,7 +18,14 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import useStyles from "./styles";
 
-import { PostContainer, TextContainer } from "./PostStyle";
+import {
+  PostContainer,
+  TitleContainer,
+  InfoContainer,
+  CommentsContainer,
+  Overlay,
+  ImageContainer,
+} from "./PostStyle";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
@@ -27,16 +34,23 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <PostContainer>
-      {post.selectedFile ? (
-        <img src={post.selectedFile} alt={post.name} />
-      ) : (
-        <img src={defaultPic} alt={post.name} />
-      )}
-
-      <TextContainer>
-        <p>{post.name}</p> {post.comments}{" "}
-        <p>{moment(post.createdAt).fromNow()}</p>
-      </TextContainer>
+      <ImageContainer>
+        {post.selectedFile ? (
+          <img src={post.selectedFile} alt={post.name} />
+        ) : (
+          <img src={defaultPic} alt={post.name} />
+        )}
+      </ImageContainer>
+      <Overlay>Okami Kasu this is a really long name</Overlay>
+      <TitleContainer>{moment(post.createdAt).fromNow()}</TitleContainer>
+      <InfoContainer>
+        <p>theseeeeeeee are super long</p>
+        <p>supeeeeeeeeer long text omg</p>
+      </InfoContainer>
+      <CommentsContainer>
+        woww this berr is awsum wwwwwwwwwwww wwwwwwwwwwwwwwwwww wwwwwwwwwwwwwww
+        wwwwww keefhkfbk jwjfgwgjwkhgbwk skfsjfksj djksjgksj
+      </CommentsContainer>
     </PostContainer>
   );
 
