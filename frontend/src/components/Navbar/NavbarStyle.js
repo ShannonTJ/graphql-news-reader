@@ -15,7 +15,7 @@ export const NavContainer = styled.ul`
   overflow: hidden;
 
   list-style-type: none;
-  background: #241d0f;
+  background: #1f1b15;
 
   border-bottom: 4px solid #5c5646;
 `;

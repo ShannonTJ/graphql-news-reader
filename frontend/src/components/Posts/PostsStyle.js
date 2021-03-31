@@ -1,15 +1,12 @@
 import styled from "styled-components/macro";
 
 export const PostsContainer = styled.div`
-  width: 80%;
+  width: 100vw;
   display: inline-grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1rem;
-  grid-rows-gap: 1rem;
-`;
+  justify-items: center;
+  justify-content: space-evenly;
+  align-items: center;
 
-export const GridItem = styled.div`
-  padding: 1rem;
-  margin: 0;
+  grid-template-columns: 35rem 35rem 35rem;
 `;

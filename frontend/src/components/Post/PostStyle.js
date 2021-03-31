@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 
 export const PostContainer = styled.div`
+  margin: 10rem 0 0 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +10,7 @@ export const PostContainer = styled.div`
   height: 30rem;
   width: 35rem;
 
-  background: #241d0f;
+  background: #1f1b15;
   border-radius: 1rem;
 
   position: relative;

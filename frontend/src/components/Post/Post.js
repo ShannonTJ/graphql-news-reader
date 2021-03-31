@@ -41,15 +41,27 @@ const Post = ({ post, setCurrentId }) => {
           <img src={defaultPic} alt={post.name} />
         )}
       </ImageContainer>
-      <Overlay>Okami Kasu this is a really long name</Overlay>
+      <Overlay>Okami Kasu but lots of text to test out</Overlay>
       <TitleContainer>{moment(post.createdAt).fromNow()}</TitleContainer>
       <InfoContainer>
-        <p>theseeeeeeee are super long</p>
-        <p>supeeeeeeeeer long text omg</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          fugiat nulla explicabo minus exercitationem aliquid numquam pariatur
+          quasi nihil voluptas alias accusamus quis, esse impedit, quo dolorum
+          quas ipsa odit.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+          numquam unde dolores vel. Vero assumenda nostrum blanditiis voluptate
+          sint, voluptates adipisci obcaecati dolorem ex, alias, ratione eius
+          architecto? Rem, magnam!
+        </p>
       </InfoContainer>
       <CommentsContainer>
-        woww this berr is awsum wwwwwwwwwwww wwwwwwwwwwwwwwwwww wwwwwwwwwwwwwww
-        wwwwww keefhkfbk jwjfgwgjwkhgbwk skfsjfksj djksjgksj
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet esse
+        corrupti, quibusdam doloremque similique maiores fuga dolorem ratione
+        distinctio fugiat, aliquid temporibus, suscipit labore totam! Suscipit
+        tempore atque quod molestias.
       </CommentsContainer>
     </PostContainer>
   );
